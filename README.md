@@ -35,6 +35,8 @@ To use this extension, follow these steps:
 
 6. **Done!**:
    - Open a YouTube video, and you will see the knob appear in the bottom right corner. Use your mouse wheel to adjust the playback speed smoothly.
+  
+# It is tested in Brave Browser and Firefox. In FireFox the hovering is little slow.
 
 ## License
 
