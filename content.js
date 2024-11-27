@@ -5,12 +5,12 @@ knob.innerText = "1.0";
 document.body.appendChild(knob);
 
 let playbackRate = 1;
+let totalRotation = 0;
 
-// Function to set playback rate
 const setPlaybackRate = (rate) => {
   const video = document.querySelector("video");
   if (video) {
-    playbackRate = Math.max(1, Math.min(10, rate));
+    playbackRate = Math.max(0.25, Math.min(10, rate));
     video.playbackRate = playbackRate;
     knob.innerText = playbackRate.toFixed(1);
     knob.style.transform = `rotate(${(playbackRate - 1) * 36}deg)`;
@@ -18,22 +18,21 @@ const setPlaybackRate = (rate) => {
   }
 };
 
-// Initial attempt to set playback rate
 setPlaybackRate(playbackRate);
 
-// Update playback rate on wheel event
 knob.addEventListener("wheel", (event) => {
   event.preventDefault();
-  setPlaybackRate(playbackRate + (event.deltaY < 0 ? 0.5 : -0.5));
+  const increment = event.deltaY < 0 ? 0.1 : -0.1; //
+  const newPlaybackRate = playbackRate + increment;
+  setPlaybackRate(newPlaybackRate);
+  totalRotation += increment * 360;
 });
 
 // MutationObserver to watch for video element changes
 const observer = new MutationObserver(() => {
   const video = document.querySelector("video");
   if (video) {
-    // Set initial playback rate if video is found
     setPlaybackRate(playbackRate);
-    // Disconnect observer after finding the video
     observer.disconnect();
   }
 });
