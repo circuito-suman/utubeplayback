@@ -1,4 +1,4 @@
-const knob = document.createElement("div");
+let knob = document.createElement("div");
 knob.style.cssText =
   "width:60px;height:60px;border-radius:50%;background-color:#007BFF;position:fixed;right:20px;bottom:20px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px";
 knob.innerText = "1.0";
